@@ -25,27 +25,10 @@
             animation: aparecer 0.8s ease-out;
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            margin-top: 25px;
-            font-size: 18px;
-            opacity: 0.9;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0 0 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
+        h1 { text-align: center; margin-bottom: 20px; letter-spacing: 2px; }
+        h2 { margin-top: 25px; font-size: 18px; opacity: 0.9; }
+        ul { list-style: none; padding: 0; margin: 15px 0 0 0; }
+        li { margin-bottom: 10px; }
 
         a {
             display: block;
@@ -70,15 +53,15 @@
             font-weight: normal;
         }
 
+        /* Estilo específico para el botón PDF */
+        .btn-pdf {
+            background: linear-gradient(135deg, #0c6860, #36d171) !important;
+            margin-top: 20px;
+        }
+
         @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -88,28 +71,30 @@
 
     <h2>Minijuegos</h2>
     <ul>
-        <?php
-            foreach($datos["minijuegosTotales"] as $minijuego){
-                echo '<li><a href="index.php?c=Minijuego&m=cargarPagina&id='.$minijuego["idMinijuego"].'">'.$minijuego["nombreMinijuego"].'</a></li>';
-            }
+        <?php foreach($datos["minijuegosTotales"] as $minijuego) {
+            echo '<li><a href="index.php?c=Minijuego&m=cargarPagina&id='.$minijuego["idMinijuego"].'&nombre='.$minijuego["nombreMinijuego"].'">'.$minijuego["nombreMinijuego"].'</a></li>';
+        }
         ?>
     </ul>
 
     <h2>Últimos jugados</h2>
     <ul class="ultimos">
-        <?php
-            foreach($datos["ultimosJugados"] as $minijuego){
-                echo '<li><a href="index.php?c=Minijuego&m=cargarPagina&id='.$minijuego["idMinijuego"].'">'.$minijuego["nombreMinijuego"].'</a></li>';
-            }
+        <?php foreach($datos["ultimosJugados"] as $minijuego) {
+            echo '<li><a href="index.php?c=Minijuego&m=cargarPagina&id='.$minijuego["idMinijuego"].'&nombre='.$minijuego["nombreMinijuego"].'">'.$minijuego["nombreMinijuego"].'</a></li>';
+        }
         ?>
     </ul>
+
+    <a href="index.php?c=Inicio&m=generarPDF" class="btn-pdf">
+        GENERAR PDF
+    </a>
 </div>
 
 <script>
-    document.querySelectorAll("li").forEach((li, index) => {
-        li.style.opacity = "0";
-        li.style.animation = `aparecer 0.5s ease forwards`;
-        li.style.animationDelay = `${index * 0.08}s`;
+    document.querySelectorAll("li, .btn-pdf").forEach((el, index) => {
+        el.style.opacity = "0";
+        el.style.animation = `aparecer 0.5s ease forwards`;
+        el.style.animationDelay = `${index * 0.08}s`;
     });
 </script>
 

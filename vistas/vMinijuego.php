@@ -76,7 +76,7 @@
 <body>
 
 <div class="panel">
-    <h1>Minijuego</h1>
+    <h1><?php echo $_GET['nombre'] ?></h1>
     <div class="botones">
         <a href="index.php?c=Minijuego&m=registrarAccion&id=<?php echo $_GET['id'] ?>" class="jugar">▶ Jugar</a>
         <a href="index.php" class="volver">Volver</a>
